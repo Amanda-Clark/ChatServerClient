@@ -2,6 +2,7 @@ import socket
 import _thread as thread
 
 
+
 HOST = ''
 PORT = 8000
 users = ['AmandaPanda', 'Kat']
@@ -16,11 +17,13 @@ print("[--] Socket Bound to port " + str(PORT))
 s.listen(10)
 print("Listening...")
 
+
 def client_thread(conn):
     for u, c in addresses.items():
-            msg = username+ ' is now online'
-            msg = msg.encode()
-            c.sendall(msg)
+            if c != addresses[username]:
+                msg = username + ' is now online'
+                msg = msg.encode()
+                c.sendall(msg)
 
     while True:
 
